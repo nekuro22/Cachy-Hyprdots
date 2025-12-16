@@ -1,9 +1,10 @@
 #!/bin/sh
 # oder
 #!/bin/bash
+echo "Starte Installation der Hyprdots-Konfiguration..."
 sudo pacman -S hyprland
 sudo pacman -S yay
-sudp pacman -S git
+sudo pacman -S git
 
 cd ~/Cachy-Hyprdots
 git fetch origin
