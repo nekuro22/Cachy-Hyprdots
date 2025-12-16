@@ -1,3 +1,6 @@
+#!/bin/sh
+# oder
+#!/bin/bash
 sudo pacman -S hyprland
 sudo pacman -S yay
 sudp pacman -S git

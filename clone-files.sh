@@ -1,3 +1,6 @@
+#!/bin/sh
+# oder
+#!/bin/bash
 sudo pacman -S --noconfirm git
 git clone https://github.com/Junior-RoboAG-GHG/Cachy-Hyprdots.git "$HOME/Cachy-Hyprdots"
 cd "$HOME/Cachy-Hyprdots"

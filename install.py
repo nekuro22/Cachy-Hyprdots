@@ -3,6 +3,7 @@ import distro
 import subprocess
 import sys
 from pathlib import Path
+import os
 
 if platform.system() != "Linux":
     print("Error: This Hyprdots setup is only for Linux.")
@@ -11,18 +12,22 @@ if platform.system() != "Linux":
 dist_name = distro.name(pretty=True)
 print(f"Detected distribution: {dist_name}")
 
-# Prüfen, ob die Distribution Arch-basiert ist
 if "Arch" not in dist_name and "CachyOS" not in dist_name:
     print("Error: This Hyprdots setup is only for Arch-based distros (e.g., Arch Linux or CachyOS).")
     sys.exit(1)
 
-# Pfad zum Cachy-Hyprdots-Verzeichnis im Home-Ordner
 hyprdots_dir = Path.home() / "Cachy-Hyprdots"
 
-# Entscheiden, welches Skript ausgeführt werden soll
+# Pfade zu den Skripten (angenommen: sie liegen im selben Verzeichnis wie install.py)
+current_dir = Path(__file__).parent.resolve()
+clone_script = current_dir / "clone-files.sh"
+install_script = current_dir / "install-arch.sh"
+
 if hyprdots_dir.exists() and hyprdots_dir.is_dir():
     print("Cachy-Hyprdots directory found. Running install-arch.sh...")
-    subprocess.run(["./install-arch.sh"], check=True)
+    os.chmod(install_script, 0o755)  # Ausführbar machen
+    subprocess.run([str(install_script)], check=True)
 else:
     print("Cachy-Hyprdots directory not found. Running clone-files.sh...")
-    subprocess.run(["./clone-files.sh"], check=True)
+    os.chmod(clone_script, 0o755)   # Ausführbar machen
+    subprocess.run([str(clone_script)], check=True)
