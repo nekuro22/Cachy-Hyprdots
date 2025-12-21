@@ -1,14 +1,13 @@
-#!/bin/sh
-# oder
 #!/bin/bash
-echo "Starte Installation der Hyprdots-Konfiguration..."
-sudo pacman -S hyprland
-sudo pacman -S yay
-sudo pacman -S git
+echo "Starting Installation of Cachy-HyprDots"
 
-cd ~/Cachy-Hyprdots
+sudo pacman -S --needed hyprland yay git
+
+cd ~/Cachy-Hyprdots || exit 1
 git fetch origin
 git pull origin main
 
-sudo cp ~/Cachy-Hyprdots/hyprdots/hyprland.conf ~/.config/hypr/hyprland.conf
-#usw
+mkdir -p ~/.config/hypr
+cp ~/Cachy-Hyprdots/hyprdots/hyprland.conf ~/.config/hypr/hyprland.conf
+
+echo "Installation finished, you may reboot your device and boot into Hyprland now."
